@@ -1,0 +1,28 @@
+.input-style {
+   border: 1px solid var(--color-black);
+   padding: rem(11) rem(15);
+   width: 100%;
+   font-size: rem(18);
+
+   &::placeholder {
+      color: var(--color-gray);
+   }
+
+   &.focus-visible {
+      outline: 1px solid var(--color-black);
+   }
+
+   &._form-error {
+      border-color: var(--color-red);
+
+      &.focus-visible {
+         outline: none;
+      }
+   }
+}
+
+.input-message {
+   min-height: 162px;
+   max-height: 400px;
+   resize: vertical;
+}

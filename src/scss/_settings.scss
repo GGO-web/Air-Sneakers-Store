@@ -1,0 +1,54 @@
+$fontFamily: "Cabin";
+$fontSize: rem(18);
+$lineHeight: math.div(24, 20);
+$fontWeight: 400;
+
+// Min Page width
+$minWidth: 320;
+
+// Min mobile width
+$minMobile: 375;
+
+// Max design layout width
+$maxWidth: 1920;
+
+// Width of container
+$maxWidthContainer: 1290;
+
+// Container paddings left + right
+$containerPadding: 30;
+
+// First breakpoint call width
+$containerWidth: $maxWidthContainer + $containerPadding;
+$containerFull: #{$containerWidth} + "px";
+
+// breakpoints
+$pc: em($containerWidth);
+$tablet: em(1025);
+$mobile: em(769);
+$mobileSmall: em(481);
+
+#root {
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+
+   main {
+      position: relative;
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: center;
+   }
+}
+
+.container {
+   @if $maxWidthContainer>0 {
+      max-width: rem($maxWidthContainer);
+      margin: 0 auto;
+   }
+
+   @if $containerPadding>0 {
+      padding: 0 rem(math.div($containerPadding, 2));
+   }
+}

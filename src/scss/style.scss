@@ -1,0 +1,19 @@
+@use "sass:math"; // use math functions
+
+// basic variables, mixins & functions, fonts
+@import "_vars";
+@import "base/mixins";
+@import "fonts/fonts";
+
+// settings and basic reset styles
+@import "_settings";
+@import "base/reset";
+
+// adding layout features
+@import "base";
+
+// common styles
+@import "common";
+
+// individual layout blocks
+@import "components/header";

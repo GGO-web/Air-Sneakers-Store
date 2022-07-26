@@ -1,0 +1,38 @@
+.form {
+   display: grid;
+   grid-gap: rem(20);
+   padding-top: 10px;
+   padding-bottom: 10px;
+
+   &__legend {
+      margin-bottom: rem(15);
+      font-size: rem(18);
+   }
+
+   &__title {
+      @include adaptiveValue("font-size", 32, 24);
+   }
+
+   &__fieldset {
+      margin: 0;
+      border: 0;
+      padding: 0;
+   }
+
+   &__options {
+      margin-bottom: rem(20);
+   }
+
+   &__licence {
+      text-decoration: underline;
+      color: cornflowerblue;
+
+      @media (any-hover: hover) {
+         &:hover {
+            text-decoration: none;
+         }
+      }
+   }
+}
+
+@import "input";
