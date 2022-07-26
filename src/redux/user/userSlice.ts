@@ -22,5 +22,7 @@ const userSlice = createSlice({
    },
 });
 
+export const getUserSelector = (store: { user: IUser }) => store.user;
+
 export const { signIn, signOut } = userSlice.actions;
 export default userSlice.reducer;
