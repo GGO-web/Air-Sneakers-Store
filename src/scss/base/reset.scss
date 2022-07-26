@@ -2,12 +2,14 @@
 *::before,
 *::after {
    box-sizing: inherit;
+   font-size: inherit;
+   line-height: inherit;
 }
 
 html {
    height: 100%;
    box-sizing: border-box;
-   font-family: $fontFamily;
+   font-family: $fontFamily, sans-serif;
    -webkit-text-size-adjust: 100%;
    scroll-behavior: smooth;
 }
@@ -28,7 +30,7 @@ body {
 input,
 button,
 textarea {
-   font-family: $fontFamily;
+   font-family: inherit;
    font-size: inherit;
 }
 
@@ -113,4 +115,39 @@ button {
    display: flex;
    flex: 1 1 auto;
    flex-direction: column;
+}
+
+// bootstrap reset styles
+.form-check {
+   line-height: 1;
+
+   * {
+      cursor: pointer;
+   }
+
+   &-input {
+      margin-top: 0;
+   }
+
+   &-label {
+      font-size: rem(16);
+      color: var(--color-gray);
+   }
+}
+
+.input-group-text {
+   border-radius: var(--border-radius) 0 0 var(--border-radius);
+   background-color: transparent;
+
+   img {
+      padding: 1px;
+      width: 20px;
+      object-fit: cover;
+   }
+}
+
+.form-label {
+   font-weight: 60;
+
+   @include adaptiveValue("font-size", 20, 18);
 }

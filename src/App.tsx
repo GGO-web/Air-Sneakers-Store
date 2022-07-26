@@ -43,6 +43,7 @@ const App: FC = () => {
                      </ProtectedRoute>
                   }
                ></Route>
+
                <Route path="*" element={<Error></Error>}></Route>
             </Routes>
          </BrowserRouter>
