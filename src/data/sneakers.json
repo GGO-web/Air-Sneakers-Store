@@ -1,0 +1,649 @@
+{
+   "items": [
+      {
+         "productId": "37148",
+         "slug": "dunk-low-retro-black-white-2021",
+         "styleCode": "DD1391-100",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Nike"
+         ],
+         "brandLineNames": [
+            "Dunk"
+         ],
+         "productName": "Dunk Low Retro Black White (2021)",
+         "description": "<p>Simplicity is key. The Nike Dunk Low Black White is a classic for a reason. Sleek, simple and timeless, a must-have retro-revival silhouette fit for any and every collection.</p><p>In true Dunk fashion, the iteration sports the classic smooth leather panelling of its predecessors, donning an enduring monotone palette, you really can’t go wrong. All the classic features are here from the perforated toe box to the signature stealthy black Swoosh extending across the lateral and medial sides to the heel in one seamless motion whilst white branding hits the tongue and heel cap elevating this iconic design. Below, the clean white midsole infused with Nike Air Technology providing boundless comfort from one wear to the next. If the Nike Dunk Low Black White isn’t already at the top your list, you had better up your shoe game.</p>",
+         "variantsCount": 442,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            },
+            {
+               "condition": "used"
+            }
+         ],
+         "customMappings": {
+            "featured": true,
+            "new": false
+         },
+         "priceWithTax": {
+            "min": 18200,
+            "max": 585000
+         },
+         "productAsset": {
+            "id": "132822",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/5308c58c-672d-40b3-8391-5614eb92ea07.__preview.jpg"
+         }
+      },
+      {
+         "productId": "51172",
+         "slug": "4-retro-infrared-2022",
+         "styleCode": "DH6927-061",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Air Jordan"
+         ],
+         "brandLineNames": [
+            "Jordan 4"
+         ],
+         "productName": "4 Retro Infrared (2022)",
+         "description": "<p>Coated with a smooth nubuck upper in low-key shades of grey, the Air Jordan 4 Retro Infrared features black mesh net panels, with a light grey mudguard. Its lively bright red accents stand out on its support wings, as well as the Jumpman on its tongue. A visible Air unit is found in the heel of the white midsole, with more infrared details found on the herringbone outsole. Cop the Air Jordan 4 Retro Infrared on KLEKT.</p>",
+         "variantsCount": 337,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 22300,
+            "max": 292500
+         },
+         "productAsset": {
+            "id": "118358",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/037cc643-b6a4-40ad-9870-13d4c78d556d.__preview.png"
+         }
+      },
+      {
+         "productId": "53857",
+         "slug": "air-force-1-x-off-white-mid-black-2022",
+         "styleCode": "DO6290-001",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Nike"
+         ],
+         "brandLineNames": [
+            "Air force",
+            "Off-White"
+         ],
+         "productName": "Air Force 1 x Off-White Mid Black (2022)",
+         "description": "<p>The Off-White Air Force 1 Mid Black is yet another bold Nike collab from the late visionary, Virgil Abloh. The iconic Off-White details, from the bright orange zip tie to the Helvetica text on the medial sides, pop off the black upper done in breathable lightweight mesh. A secondary set of Flywire laces makes its way up to the Mid's ankle strap, and underneath the black rubber sole are several neon-coloured spikes, rounding out the list of bold futuristic features. Cop the Nike Air Force 1 x Off-White Mid Black on KLEKT.</p>",
+         "variantsCount": 158,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 19400,
+            "max": 117000
+         },
+         "productAsset": {
+            "id": "188162",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/c8818006-b679-49ce-a304-46f7c3ec363b.__preview.jpg"
+         }
+      },
+      {
+         "productId": "51873",
+         "slug": "slide-onyx-2022",
+         "styleCode": "HQ6448",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Yeezy"
+         ],
+         "brandLineNames": [
+            "Slides"
+         ],
+         "productName": "Slide Onyx (2022)",
+         "description": "",
+         "variantsCount": 527,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1,
+            2
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            },
+            {
+               "condition": "used"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": false
+         },
+         "priceWithTax": {
+            "min": 10000,
+            "max": 117000
+         },
+         "productAsset": {
+            "id": "132345",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/cd248c8c-cb1c-4649-8d06-cc86e35563f4.__preview.jpg"
+         }
+      },
+      {
+         "productId": "51171",
+         "slug": "4-military-black-2022",
+         "styleCode": "DH6927-111",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Air Jordan"
+         ],
+         "brandLineNames": [
+            "Jordan 4"
+         ],
+         "productName": "4 Military Black (2022)",
+         "description": "<p>One of the cleanest and most versatile colourways for one of Jordan Brand's greatest silhouettes, the Air Jordan 4 Military Black comes in a premium white leather upper with black accents found beneath the white net panels, on the support wings, TPU heel, and along with the midsole above the visible Air unit. The light grey tech straps and suede mudguard sit nicely between the black and white contrasts, and monochrome Jumpman logos are found on the tongue, heel, and outsole. Cop the Military Black, one of 2022's cleanest looks, on KLEKT.</p>",
+         "variantsCount": 337,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 23900,
+            "max": 526500
+         },
+         "productAsset": {
+            "id": "118366",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/fe1dc93d-b6ce-40e5-a816-52637b175f90.__preview.png"
+         }
+      },
+      {
+         "productId": "55242",
+         "slug": "350-v2-onyx-2",
+         "styleCode": " HQ4540",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Yeezy"
+         ],
+         "brandLineNames": [
+            "350"
+         ],
+         "productName": "350 V2 Onyx (2022)",
+         "description": "<p>Coated in a bold triple black, the breathable Primeknit upper of the Yeezy Boost 350 V2 Onyx features the iconic strip of exposed mesh along its side. The cloud-like Boost foam sits in a translucent black midsole and is visible in segments on the outsole. Cop the Yeezy Boost 350 V2 Onyx on KLEKT.</p>",
+         "variantsCount": 176,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": false
+         },
+         "priceWithTax": {
+            "min": 28100,
+            "max": 116700
+         },
+         "productAsset": {
+            "id": "187921",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/b30af5c7-f1d4-45ec-b042-d395df31a230.__preview.jpg"
+         }
+      },
+      {
+         "productId": "35745",
+         "slug": "air-force-1-low-white-07-2021",
+         "styleCode": "315122-111/CW2288-111",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Nike"
+         ],
+         "brandLineNames": [
+            "Air force"
+         ],
+         "productName": "Air Force 1 Low White '07 (2021)",
+         "description": "<p>Force of nature. The Nike Air Force 1 Low White '07 is a tried and true rotation staple, if you haven't got a pair yet, what are you waiting for? The cult-classic sports a white premium smooth leather construction, with the monochrome palette extending across the Swoosh branded detailing and sole. It's the ultimate blank slate sneaker. Make it truly yours. The Nike Air Force 1 Low White '07, uniquely you.</p>",
+         "variantsCount": 178,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            },
+            {
+               "condition": "used"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": false
+         },
+         "priceWithTax": {
+            "min": 12500,
+            "max": 29300
+         },
+         "productAsset": {
+            "id": "29497",
+            "preview": "https://cdn.filestackcontent.com/9D9DcDswTZut3ITzsw5s"
+         }
+      },
+      {
+         "productId": "52082",
+         "slug": "1-low-shadow-toe-2022",
+         "styleCode": "553558-052",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Air Jordan"
+         ],
+         "brandLineNames": [
+            "Jordan 1"
+         ],
+         "productName": "1 Low Shadow Toe (2022)",
+         "description": "<p>The toe box, heel, and rubber outsole of the Air Jordan 1 Shadow Toe are coated in a faint yet distinct grey. The grey and white panels are broken up by the toe cap, eyestays and tongue. The Nike Swooshes and embroidered Joran Wings are also in black, with the tongue sporting a light grey Jumpman. In the middle of all this is the white Air midsole, adding an even lighter feel to the lowkey Air Jordan 1 Low Shadow Toe.</p>",
+         "variantsCount": 177,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            },
+            {
+               "condition": "used"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 10600,
+            "max": 58500
+         },
+         "productAsset": {
+            "id": "151752",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/e2900807-fcb3-4ae7-bceb-6157f461eb3f.__preview.jpg"
+         }
+      },
+      {
+         "productId": "53044",
+         "slug": "dunk-low-coconut-milk-2022",
+         "styleCode": "DJ6188-100",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Nike"
+         ],
+         "brandLineNames": [
+            "Dunk"
+         ],
+         "productName": "Dunk Low Coconut Milk\t(2022)",
+         "description": "",
+         "variantsCount": 200,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 14000,
+            "max": 45400
+         },
+         "productAsset": {
+            "id": "150303",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/f37ad5ae-390f-4bcf-8ddd-2cc747cdd840.__preview.jpg"
+         }
+      },
+      {
+         "productId": "53023",
+         "slug": "wmns-dunk-low-next-nature-white-mint-2022",
+         "styleCode": "DN1431-102",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Nike"
+         ],
+         "brandLineNames": [
+            "Dunk"
+         ],
+         "productName": "WMNS Dunk Low Next Nature White Mint (2022)",
+         "description": "<p>The Nike Dunk Low WMNS Next Nature White Mint features cool light green overlays, blending into the rest of its crisp white premium leather uppers. Matching mint Swooshes are found on the sides, meeting at the branded heel tab, with Next Nature branding found on the neon green insole. Speckles are found on the light green rubber outsole, below the midsole with signature Dunk cushioning for all-day comfort. The pastel greens of the Nike Dunk Low WMNS Next Nature White Mint are perfect for freshening up your rotation, cop them now on KLEKT.</p>",
+         "variantsCount": 223,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            2
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            },
+            {
+               "condition": "used"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 14000,
+            "max": 58500
+         },
+         "productAsset": {
+            "id": "150181",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/3c8a10b9-f300-4dfa-b36e-d97365db5d98.__preview.jpg"
+         }
+      },
+      {
+         "productId": "22136",
+         "slug": "x-supreme-air-force-1-low-white-ss20",
+         "styleCode": "CU9225-100",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Nike"
+         ],
+         "brandLineNames": [
+            "Air force"
+         ],
+         "productName": "x Supreme Air Force 1 Low White (SS20)",
+         "description": "<p>The Supreme x Nike Air Force 1 Low White is a simple and clean model based on the Air Force 1's classic Triple White colourway. Beneath the Swoosh is Supreme's iconic red box branding, whilst below the premium leather upper sits atop the classic Nike Air midsole, providing supreme levels of comfort. The Supreme x Nike Air Force 1 Low White is a hype revamp of a streetwear staple.</p>",
+         "variantsCount": 196,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            },
+            {
+               "condition": "used"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": false
+         },
+         "priceWithTax": {
+            "min": 16300,
+            "max": 46300
+         },
+         "productAsset": {
+            "id": "16150",
+            "preview": "https://cdn.filestackcontent.com/ta0pRPFKRauQJ0xC18I6"
+         }
+      },
+      {
+         "productId": "50786",
+         "slug": "slide-pure-2",
+         "styleCode": "GW1934",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Yeezy"
+         ],
+         "brandLineNames": [
+            "Slides"
+         ],
+         "productName": "Slide Pure",
+         "description": "<p>A blanket neutral tone adds to the chilled comfort of the Yeezy Slide Pure. EVA foam sits above a jagged traction outsole, creating a relaxed comfy feel. Cop a pair of the Yeezy Slide Pures to add some casual perfection to your rotation.</p>",
+         "variantsCount": 180,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1,
+            2
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 12800,
+            "max": 58500
+         },
+         "productAsset": {
+            "id": "105263",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/83bb44ba-faa6-4acd-9871-3711517dcebd.__preview.png"
+         }
+      },
+      {
+         "productId": "53306",
+         "slug": "550-cream-black-2022",
+         "styleCode": "BB550LWT",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "New Balance"
+         ],
+         "brandLineNames": [],
+         "productName": "550 Cream Black (2022)",
+         "description": "<p>A vintage-inspired creamy premium leather sits over the iconic 80s silhouette of the New Balance 550 Cream Black, with perforations on the toe box and throughout the sides for comfortable breathability. Understated uses of black are also found accenting the textured \"N\" logo on the sides, on the New Balance branding on the heel, and over the mesh collar. Black and grey are also used on the 550's chunky outsole with its unique traction pattern. The vintage hues and lowkey accents of the 550 Cream Black make it a pair that can be worn with almost anything.</p>",
+         "variantsCount": 173,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 15300,
+            "max": 46300
+         },
+         "productAsset": {
+            "id": "155082",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/a30794d9-e4fb-4c20-95fc-72829e6f0ecb.__preview.jpg"
+         }
+      },
+      {
+         "productId": "55354",
+         "slug": "air-humara-wmns-lx-jacquemus-beige-2022",
+         "styleCode": "DR0420-001",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Nike"
+         ],
+         "brandLineNames": [],
+         "productName": "Air Humara WMNS LX Jacquemus Beige (2022)",
+         "description": "<p>From the luxury French brand's debut Nike collab, the Nike Air Humara WMNS LX Jacquemus Beige puts a premium spin on the trail sneaker. Soft beige suede overlays sit on a luxe white leather upper, with tiny metallic gold Swooshes on the sides. The Humara's signature fabric stripes are toned down to subtle additions on the lacing and heel, with the chunky midsole coated in white suede with a gum rubber outsole, completing the clean, elevated look. Cop the Nike Air Humara WMNS LX Jacquemus Beige on KLEKT.</p>",
+         "variantsCount": 137,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            2
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            },
+            {
+               "condition": "used"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": false
+         },
+         "priceWithTax": {
+            "min": 19800,
+            "max": 65000
+         },
+         "productAsset": {
+            "id": "189669",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/2189ddb2-8ed5-49a1-9158-07f1f55a5430.__preview.jpg"
+         }
+      },
+      {
+         "productId": "54642",
+         "slug": "air-max-1-x-kasina-won-ang-orange-2022",
+         "styleCode": "DQ8475-800",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Nike"
+         ],
+         "brandLineNames": [
+            "Air Max"
+         ],
+         "productName": "Air Max 1 x Kasina Won Ang Orange (2022)",
+         "description": "<p>The Nike Air Max 1 x Kasina Won Ang Orange features shades of bright and burnt orange over its tumbled leather toe box and suede mudguard. The multicoloured upper features panels of green pony hair, with white Swooshes on the sides. The Won Ang name comes from the Mandarin ducks embroidered onto the heels, traditionally used as symbols of togetherness in Korean weddings. Flowery Swooshes are embroidered on the mudguards with Kasina and Nike branding found on the wooden deubrés on the laces. The cream midsole features the visible Air unit in the heel, with a watery translucent blue outsole revealing more Won Ang ducks underneath. Cop the Air Max 1 x Kasina Won Ang Orange on KLEKT.</p>",
+         "variantsCount": 112,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 19800,
+            "max": 210600
+         },
+         "productAsset": {
+            "id": "175339",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/63c713f0-1abe-400d-8bca-ea5df69a3f04.__preview.jpg"
+         }
+      },
+      {
+         "productId": "54643",
+         "slug": "air-max-1-x-kasina-won-ang-grey-2022",
+         "styleCode": "DQ8475-001",
+         "categoryNames": [
+            "Sneakers"
+         ],
+         "brandNames": [
+            "Nike"
+         ],
+         "brandLineNames": [
+            "Air Max"
+         ],
+         "productName": "Air Max 1 x Kasina Won Ang Grey (2022)",
+         "description": "<p>The Nike Air Max 1 x Kasina Won Ang Grey comes dressed in dark grey pony hair panels over its blue tumbled leather panels, with cream Swooshes on the sides. The Won Ang gets its name from the Mandarin ducks embroidered onto the heels, the ducks being symbols of togetherness traditionally used in Korean weddings. The mudguard is made with hairy gey suede with embroidered flowery Swooshes, with the laces featuring wooden deubrés with Kasina and Nike branding. The cream midsole features the visible Air unit in the heel, with a watery translucent blue outsole revealing more Mandarin ducks underneath. Cop the Nike Air Max 1 x Kasina Won Ang Grey on KLEKT.</p>",
+         "variantsCount": 93,
+         "sameDayShipping": false,
+         "sdsPriceWithTaxMin": 0,
+         "sizeType": [
+            1
+         ],
+         "conditions": [
+            {
+               "condition": "new"
+            }
+         ],
+         "customMappings": {
+            "featured": false,
+            "new": true
+         },
+         "priceWithTax": {
+            "min": 20900,
+            "max": 46800
+         },
+         "productAsset": {
+            "id": "175338",
+            "preview": "https://storage.googleapis.com/kt-apiv2-default/9fa80585-0dd2-4cb3-a17c-cbc12dc9bfc6.__preview.jpg"
+         }
+      }
+   ],
+   "totalItems": 16
+}
