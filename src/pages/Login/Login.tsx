@@ -1,10 +1,14 @@
 import {
+   browserSessionPersistence,
    FacebookAuthProvider,
    GoogleAuthProvider,
+   inMemoryPersistence,
+   setPersistence,
+   signInWithEmailAndPassword,
    signInWithPopup,
    User,
 } from "firebase/auth";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSigninCheck } from "reactfire";
@@ -27,6 +31,8 @@ const Login = () => {
 
    const [showPassword, setShowPassword] = useState(false);
 
+   const formCheckboxRef = useRef<HTMLInputElement>(null);
+
    const formChangeEvent = (event: FormEvent<HTMLFormElement>) => {
       const form: HTMLFormElement = event.currentTarget;
 
@@ -42,13 +48,29 @@ const Login = () => {
    };
 
    const formSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
+      const form: HTMLFormElement = event.currentTarget;
+
       event.preventDefault();
       event.stopPropagation();
 
       setValidated(false);
 
-      event.currentTarget.reset();
-      setErrors({ email: true, password: true });
+      signInWithEmailAndPassword(
+         firebaseAuth,
+         form["email"].value,
+         form["password"].value
+      )
+         .then(async () => {
+            if (formCheckboxRef.current?.checked) {
+               await setPersistence(firebaseAuth, browserSessionPersistence);
+            } else {
+               await setPersistence(firebaseAuth, inMemoryPersistence);
+            }
+         })
+         .catch(() => {
+            form.reset();
+            setErrors({ email: true, password: true });
+         });
    };
 
    const loginWith = (
@@ -160,6 +182,7 @@ const Login = () => {
                      type="checkbox"
                      id={`default-checkbox`}
                      label={`Remember Me`}
+                     ref={formCheckboxRef}
                   />
                </Form.Group>
 
