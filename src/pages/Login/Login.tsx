@@ -75,23 +75,25 @@ const Login = () => {
    });
 
    return (
-      <section className="login section-offsets">
-         <div className="login__inner container">
-            <h1 className="login__title title mb-5">Login</h1>
+      <section className="authentication login section-offsets">
+         <div className="authentication__inner container">
+            <h1 className="authentication__title title mb-5">Login</h1>
 
             <Form
                noValidate
                validated={validated}
                onChange={(e) => formChangeEvent(e)}
                onSubmit={(e) => formSubmitHandler(e)}
-               className="login__form login-form"
+               className="authentication__form authentication-form"
             >
-               <Form.Group className="login__form-group mb-4">
-                  <Form.Label className="login__form-label">E-mail</Form.Label>
-                  <InputGroup className="login-form__input-group mb-3">
+               <Form.Group className="authentication__form-group mb-4">
+                  <Form.Label className="authentication__form-label">
+                     E-mail
+                  </Form.Label>
+                  <InputGroup className="authentication-form__input-group mb-3">
                      <InputGroup.Text>
                         <img
-                           className="login__form-icon"
+                           className="authentication__form-icon"
                            src="/images/mail.svg"
                            alt=""
                         />
@@ -100,7 +102,7 @@ const Login = () => {
                      <Form.Control
                         required
                         name="email"
-                        className="login__form-input"
+                        className="authentication__form-input"
                         type="email"
                         placeholder="Your email"
                         isInvalid={!errors.email}
@@ -111,14 +113,14 @@ const Login = () => {
                   </InputGroup>
                </Form.Group>
 
-               <Form.Group className="login__form-group mb-4">
-                  <Form.Label className="login__form-label">
+               <Form.Group className="authentication__form-group mb-4">
+                  <Form.Label className="authentication__form-label">
                      Password
                   </Form.Label>
-                  <InputGroup className="login-form__input-group mb-3">
+                  <InputGroup className="authentication-form__input-group mb-3">
                      <InputGroup.Text>
                         <img
-                           className="login__form-icon"
+                           className="authentication__form-icon"
                            src="/images/lock.svg"
                            alt=""
                         />
@@ -127,13 +129,13 @@ const Login = () => {
                      <Form.Control
                         required
                         name="password"
-                        className="login__form-input login__form-input--password"
-                        type={!showPassword ? "text" : "password"}
+                        className="authentication__form-input authentication__form-input--password"
+                        type={showPassword ? "text" : "password"}
                         placeholder="Your password"
                         isInvalid={!errors.password}
                      />
 
-                     <InputGroup.Text className="login__form-icon login__form-icon--append">
+                     <InputGroup.Text className="authentication__form-icon authentication__form-icon--append">
                         <button
                            onClick={() => togglePassword()}
                            type="button"
@@ -153,7 +155,7 @@ const Login = () => {
                   </InputGroup>
                </Form.Group>
 
-               <Form.Group className="login__form-group mb-4">
+               <Form.Group className="authentication__form-group mb-4">
                   <Form.Check
                      type="checkbox"
                      id={`default-checkbox`}
@@ -163,7 +165,7 @@ const Login = () => {
 
                <Button
                   type="submit"
-                  className="mt-3 login__form-button button-style btn-reset w-100"
+                  className="mt-3 authentication__form-button button-style btn-reset w-100"
                   disabled={!validated}
                >
                   Login
