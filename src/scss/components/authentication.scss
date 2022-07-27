@@ -1,5 +1,7 @@
 .authentication {
+   margin: auto;
    width: 100%;
+   max-width: $mobileSmall;
 
    &__title {
       font-weight: 700;
@@ -37,10 +39,7 @@
 
    &__form-input--password {
       padding-right: 44px;
-
-      &.is-invalid {
-         background-image: none;
-      }
+      background-image: none;
    }
 
    &-form__input-group .input-group-text {
@@ -55,6 +54,12 @@
       &:not(.authentication__form-icon--append) {
          position: relative;
          border-radius: var(--border-radius) 0 0 var(--border-radius);
+      }
+   }
+
+   &__form-privacy {
+      .link-dark:hover {
+         text-decoration: underline;
       }
    }
 }
