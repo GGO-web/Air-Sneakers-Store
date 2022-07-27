@@ -1,5 +1,17 @@
-import { FormEvent, useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import {
+   FacebookAuthProvider,
+   GoogleAuthProvider,
+   signInWithPopup,
+   User,
+} from "firebase/auth";
+import { FormEvent, useEffect, useState } from "react";
+import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useSigninCheck } from "reactfire";
+import { firebaseAuth } from "../../firebaseConfig";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { IUser } from "../../redux/user/user.model";
+import { signIn } from "../../redux/user/userSlice";
 
 import { isValidEmail } from "../../utilities/emailValidator";
 import { isValidPassword } from "../../utilities/passwordValidator";
@@ -7,6 +19,10 @@ import { isValidPassword } from "../../utilities/passwordValidator";
 const Login = () => {
    const [errors, setErrors] = useState({ email: true, password: true });
    const [validated, setValidated] = useState(false);
+
+   const dispatch = useAppDispatch();
+   const { data: signInCheckResult } = useSigninCheck();
+   const navigate = useNavigate();
 
    const formChangeEvent = (event: FormEvent<HTMLFormElement>) => {
       const form: HTMLFormElement = event.currentTarget;
@@ -31,6 +47,25 @@ const Login = () => {
       event.currentTarget.reset();
       setErrors({ email: true, password: true });
    };
+
+   const loginWith = (
+      AuthProvider: typeof FacebookAuthProvider | typeof GoogleAuthProvider
+   ) => {
+      const provider = new AuthProvider();
+      signInWithPopup(firebaseAuth, provider);
+   };
+
+   useEffect(() => {
+      if (signInCheckResult?.signedIn) {
+         const user = signInCheckResult.user as User;
+
+         dispatch(
+            signIn({ name: user.displayName, email: user.email } as IUser)
+         );
+
+         navigate("/");
+      }
+   });
 
    return (
       <section className="login section-offsets">
@@ -112,6 +147,42 @@ const Login = () => {
                   Login
                </Button>
             </Form>
+
+            <div className="login__auth mt-5">
+               <h2 className="login__auth-title text-muted text-center mt-3 mb-3">
+                  <span>or continue with</span>
+               </h2>
+
+               <Row
+                  xs="auto"
+                  className="login__auth-providers d-flex justify-content-center"
+               >
+                  <Col>
+                     <Button
+                        onClick={() => loginWith(FacebookAuthProvider)}
+                        className="login__auth-button btn-reset"
+                     >
+                        <img
+                           className="login__auth-img"
+                           src="images/facebook.svg"
+                           alt="facebook"
+                        />
+                     </Button>
+                  </Col>
+                  <Col>
+                     <Button
+                        onClick={() => loginWith(GoogleAuthProvider)}
+                        className="login__auth-button btn-reset"
+                     >
+                        <img
+                           className="login__auth-img"
+                           src="images/google.svg"
+                           alt="google"
+                        />
+                     </Button>
+                  </Col>
+               </Row>
+            </div>
          </div>
       </section>
    );
