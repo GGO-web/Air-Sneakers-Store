@@ -14,12 +14,6 @@
       }
    }
 
-   &__form-button {
-      &:disabled {
-         color: rgb(var(--color-primary) 0.7);
-      }
-   }
-
    &__auth {
       &-title {
          position: relative;

@@ -1,0 +1,15 @@
+.navbar {
+   &__link {
+      transition: background-color 0.3s, color 0.3s;
+
+      &:hover {
+         color: var(--color-white);
+         background-color: var(--color-primary);
+      }
+
+      &.active {
+         color: var(--color-white);
+         background-color: var(--bs-primary);
+      }
+   }
+}
