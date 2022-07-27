@@ -8,6 +8,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useSigninCheck } from "reactfire";
+
 import { firebaseAuth } from "../../firebaseConfig";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { IUser } from "../../redux/user/user.model";
@@ -23,6 +24,8 @@ const Login = () => {
    const dispatch = useAppDispatch();
    const { data: signInCheckResult } = useSigninCheck();
    const navigate = useNavigate();
+
+   const [showPassword, setShowPassword] = useState(false);
 
    const formChangeEvent = (event: FormEvent<HTMLFormElement>) => {
       const form: HTMLFormElement = event.currentTarget;
@@ -55,6 +58,10 @@ const Login = () => {
       signInWithPopup(firebaseAuth, provider);
    };
 
+   const togglePassword = () => {
+      setShowPassword(!showPassword);
+   };
+
    useEffect(() => {
       if (signInCheckResult?.signedIn) {
          const user = signInCheckResult.user as User;
@@ -81,10 +88,10 @@ const Login = () => {
             >
                <Form.Group className="login__form-group mb-4">
                   <Form.Label className="login__form-label">E-mail</Form.Label>
-                  <InputGroup className="mb-3">
+                  <InputGroup className="login-form__input-group mb-3">
                      <InputGroup.Text>
                         <img
-                           className="login__form-input"
+                           className="login__form-icon"
                            src="/images/mail.svg"
                            alt=""
                         />
@@ -108,10 +115,10 @@ const Login = () => {
                   <Form.Label className="login__form-label">
                      Password
                   </Form.Label>
-                  <InputGroup className="mb-3">
+                  <InputGroup className="login-form__input-group mb-3">
                      <InputGroup.Text>
                         <img
-                           className="login__form-input"
+                           className="login__form-icon"
                            src="/images/lock.svg"
                            alt=""
                         />
@@ -120,11 +127,26 @@ const Login = () => {
                      <Form.Control
                         required
                         name="password"
-                        className="login__form-input"
-                        type="password"
+                        className="login__form-input login__form-input--password"
+                        type={!showPassword ? "text" : "password"}
                         placeholder="Your password"
                         isInvalid={!errors.password}
                      />
+
+                     <InputGroup.Text className="login__form-icon login__form-icon--append">
+                        <button
+                           onClick={() => togglePassword()}
+                           type="button"
+                           className="btn-reset"
+                        >
+                           {!showPassword ? (
+                              <img src="/images/eye.svg" alt="" />
+                           ) : (
+                              <img src="/images/eye-crossed.svg" alt="" />
+                           )}
+                        </button>
+                     </InputGroup.Text>
+
                      <Form.Control.Feedback type="invalid">
                         Password length should be more than 3
                      </Form.Control.Feedback>
