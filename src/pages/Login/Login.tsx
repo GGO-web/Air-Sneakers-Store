@@ -1,9 +1,11 @@
 import { FormEvent, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
+
 import { isValidEmail } from "../../utilities/emailValidator";
+import { isValidPassword } from "../../utilities/passwordValidator";
 
 const Login = () => {
-   const [errors, setErrors] = useState({ email: false, password: false });
+   const [errors, setErrors] = useState({ email: true, password: true });
    const [validated, setValidated] = useState(false);
 
    const formChangeEvent = (event: FormEvent<HTMLFormElement>) => {
@@ -11,17 +13,23 @@ const Login = () => {
 
       setErrors({
          email: isValidEmail(form["email"].value),
-         password: form["password"].value.length > 3,
+         password: isValidPassword(form["password"].value),
       });
 
-      setValidated(errors.email && errors.password);
+      setValidated(
+         isValidEmail(form["email"].value) &&
+            isValidPassword(form["password"].value)
+      );
    };
 
    const formSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       event.stopPropagation();
 
-      setValidated(true);
+      setValidated(false);
+
+      event.currentTarget.reset();
+      setErrors({ email: true, password: true });
    };
 
    return (
