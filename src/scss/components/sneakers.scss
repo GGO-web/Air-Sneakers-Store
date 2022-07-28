@@ -1,0 +1,27 @@
+.sneakers {
+   &-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: rem(30);
+
+      &__item {
+         padding: 0;
+      }
+   }
+
+   &-list__item-description {
+      * {
+         display: none;
+         overflow: hidden;
+         display: -webkit-box;
+         text-overflow: ellipsis;
+         -webkit-box-orient: vertical;
+         -webkit-line-clamp: 3;
+         margin: 0;
+      }
+
+      :first-child {
+         display: -webkit-box;
+      }
+   }
+}

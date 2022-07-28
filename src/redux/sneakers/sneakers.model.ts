@@ -1,3 +1,9 @@
+export interface ISneakers {
+   items: ISneaker[];
+   loading: boolean;
+   error: string;
+}
+
 export interface ISneaker {
    productId: string;
    slug: string;

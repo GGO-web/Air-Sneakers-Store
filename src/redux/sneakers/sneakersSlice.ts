@@ -1,13 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { ISneaker } from './sneakers.model';
-
-interface ISneakers {
-   items: ISneaker[];
-   loading: boolean;
-   error: string;
-}
+import { ISneakers } from './sneakers.model';
 
 const initialState: ISneakers = { items: [], loading: false, error: '' };
 
