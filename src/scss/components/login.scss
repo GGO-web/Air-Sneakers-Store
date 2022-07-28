@@ -1,36 +1,4 @@
 .login {
-   width: 100%;
-
-   &__title {
-      font-weight: 700;
-      font-size: rem(28);
-   }
-
-   &__form-input {
-      font-size: rem(16);
-
-      &::placeholder {
-         color: var(--color-gray);
-      }
-   }
-
-   &__form-icon {
-      &--append {
-         position: absolute;
-         right: 0;
-         z-index: 5;
-         border: none;
-
-         button {
-            transition: filter 0.3s;
-
-            &:hover {
-               filter: drop-shadow(0 0 3px var(--bs-gray-400));
-            }
-         }
-      }
-   }
-
    &__auth {
       &-title {
          position: relative;
@@ -66,27 +34,4 @@
          height: auto;
       }
    }
-}
-
-.login-form__input-group .input-group-text {
-   background-color: transparent;
-
-   .login__form-icon {
-      padding: 1px;
-      width: 20px;
-      object-fit: cover;
-   }
-
-   &:not(.login__form-icon--append) {
-      position: relative;
-      border-radius: var(--border-radius) 0 0 var(--border-radius);
-   }
-}
-
-.login__form-input--password {
-   padding-right: 44px;
-}
-
-.login__form-input--password.is-invalid {
-   background-image: none;
 }

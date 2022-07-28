@@ -9,6 +9,7 @@ import Login from "./pages/Login/Login";
 import ProductInfo from "./pages/ProductInfo/ProductInfo";
 import Products from "./pages/Products/Products";
 import Error from "./pages/Error/Error";
+import SignUp from "./pages/SignUp/SignUp";
 
 const App: FC = () => {
    return (
@@ -16,6 +17,7 @@ const App: FC = () => {
          <BrowserRouter>
             <Routes>
                <Route path="/login" element={<Login></Login>}></Route>
+               <Route path="/signup" element={<SignUp></SignUp>}></Route>
 
                <Route
                   path="/"

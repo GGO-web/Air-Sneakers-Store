@@ -1,29 +1,16 @@
-import { FirebaseError } from "firebase/app";
-import {
-   browserSessionPersistence,
-   FacebookAuthProvider,
-   GoogleAuthProvider,
-   inMemoryPersistence,
-   setPersistence,
-   signInWithEmailAndPassword,
-   signInWithPopup,
-   User,
-} from "firebase/auth";
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import { Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useSigninCheck } from "reactfire";
 
 import { firebaseAuth } from "../../firebaseConfig";
-import { useAppDispatch } from "../../hooks/reduxHooks";
-import { IUser } from "../../redux/user/user.model";
-import { signIn } from "../../redux/user/userSlice";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 import { isValidEmail } from "../../utilities/emailValidator";
 import { isValidPassword } from "../../utilities/passwordValidator";
 import { isValidUserName } from "../../utilities/userNameValidator";
+import { FirebaseError } from "firebase/app";
 
-const Login = () => {
+const SignUp = () => {
    const [touched, setTouched] = useState(false);
    const [inputControls, setInputControls] = useState({
       userName: "",
@@ -31,13 +18,9 @@ const Login = () => {
       password: "",
    });
 
-   const dispatch = useAppDispatch();
-   const { data: signInCheckResult } = useSigninCheck();
    const navigate = useNavigate();
 
    const [showPassword, setShowPassword] = useState(false);
-
-   const formCheckboxRef = useRef<HTMLInputElement>(null);
 
    const [formSubmitError, setFormSubmitError] = useState("");
 
@@ -64,24 +47,24 @@ const Login = () => {
       const form: HTMLFormElement = event.currentTarget;
 
       try {
-         await signInWithEmailAndPassword(
+         const result = await createUserWithEmailAndPassword(
             firebaseAuth,
             inputControls.email,
             inputControls.password
          );
 
-         if (formCheckboxRef.current?.checked) {
-            await setPersistence(firebaseAuth, browserSessionPersistence);
-         } else {
-            await setPersistence(firebaseAuth, inMemoryPersistence);
-         }
+         await updateProfile(result.user, {
+            displayName: inputControls.userName,
+         });
+
+         navigate("/login");
       } catch (error: any) {
          const fireError = error as FirebaseError;
 
-         if (fireError.message.includes("wrong-password")) {
-            setFormSubmitError("The entered password is wrong.");
-         } else if (fireError.message.includes("user-not-found")) {
-            setFormSubmitError("The user with the given email is not found.");
+         if (fireError.message.includes("email-already-in-use")) {
+            setFormSubmitError("Email is already in use, try another one.");
+         } else if (fireError.message.includes("weak-password")) {
+            setFormSubmitError("The password is too weak.");
          } else {
             setFormSubmitError(fireError.message);
          }
@@ -90,40 +73,52 @@ const Login = () => {
       }
    };
 
-   const loginWith = (
-      AuthProvider: typeof FacebookAuthProvider | typeof GoogleAuthProvider
-   ) => {
-      const provider = new AuthProvider();
-      signInWithPopup(firebaseAuth, provider);
-   };
-
    const togglePassword = () => {
       setShowPassword(!showPassword);
    };
 
-   useEffect(() => {
-      if (signInCheckResult?.signedIn) {
-         const user = signInCheckResult.user as User;
-
-         dispatch(
-            signIn({ name: user.displayName, email: user.email } as IUser)
-         );
-
-         navigate("/");
-      }
-   });
-
    return (
-      <section className="authentication login section-offsets">
+      <section className="authentication signup section-offsets">
          <div className="authentication__inner container">
-            <h1 className="authentication__title title mb-5">Login</h1>
+            <NavLink
+               to="/login"
+               className="d-inline-block btn-reset mb-3"
+               style={{ padding: "5px" }}
+            >
+               <img src="images/arrow-left.svg" alt="Back to Login" />
+            </NavLink>
+
+            <h1 className="authentication__title title mb-5">Sign up</h1>
 
             <Form
                noValidate
                validated={formCheckIsValid()}
                onSubmit={(e) => formSubmitHandler(e)}
-               className="authentication__form authentication-form"
+               className="authentication__form authentication-form mb-5"
             >
+               <Form.Group className="authentication__form-group mb-4">
+                  <Form.Label className="authentication__form-label">
+                     Name
+                  </Form.Label>
+                  <InputGroup className="authentication-form__input-group mb-3">
+                     <Form.Control
+                        required
+                        name="userName"
+                        className="authentication__form-input"
+                        type="text"
+                        value={inputControls.userName}
+                        onChange={inputChangeHandler}
+                        placeholder="Your name"
+                        isInvalid={
+                           !isValidUserName(inputControls.userName) && touched
+                        }
+                     />
+                     <Form.Control.Feedback type="invalid">
+                        Name length should be at least 3
+                     </Form.Control.Feedback>
+                  </InputGroup>
+               </Form.Group>
+
                <Form.Group className="authentication__form-group mb-4">
                   <Form.Label className="authentication__form-label">
                      E-mail
@@ -202,63 +197,31 @@ const Login = () => {
                </Form.Group>
 
                <Form.Group className="authentication__form-group mb-4">
-                  <Form.Check
-                     type="checkbox"
-                     id={`default-checkbox`}
-                     label={`Remember Me`}
-                     ref={formCheckboxRef}
-                  />
+                  <p className="authentication__form-privacy text-muted">
+                     By signing up you agree to our{" "}
+                     <a className="link-dark" href="#!">
+                        Terms & Condition
+                     </a>{" "}
+                     and{" "}
+                     <a className="link-dark" href="#!">
+                        Privacy Policy.*
+                     </a>
+                  </p>
                </Form.Group>
 
                <Button
                   type="submit"
                   className="mt-3 authentication__form-button button-style btn-reset w-100"
-                  disabled={formCheckIsValid()}
+                  disabled={!formCheckIsValid()}
                >
-                  Login
+                  Continue
                </Button>
             </Form>
 
-            <div className="login__auth mt-5 mb-5">
-               <h2 className="login__auth-title text-muted text-center mt-3 mb-3">
-                  <span>or continue with</span>
-               </h2>
-
-               <Row
-                  xs="auto"
-                  className="login__auth-providers d-flex justify-content-center"
-               >
-                  <Col>
-                     <Button
-                        onClick={() => loginWith(FacebookAuthProvider)}
-                        className="login__auth-button btn-reset"
-                     >
-                        <img
-                           className="login__auth-img"
-                           src="images/facebook.svg"
-                           alt="facebook"
-                        />
-                     </Button>
-                  </Col>
-                  <Col>
-                     <Button
-                        onClick={() => loginWith(GoogleAuthProvider)}
-                        className="login__auth-button btn-reset"
-                     >
-                        <img
-                           className="login__auth-img"
-                           src="images/google.svg"
-                           alt="google"
-                        />
-                     </Button>
-                  </Col>
-               </Row>
-            </div>
-
             <p className="authentication__text-moveback text-center text-muted">
-               Don't have an account?{" "}
-               <NavLink className="link-primary" to="/signup">
-                  Sign up
+               Already signed up?{" "}
+               <NavLink className="link-primary" to="/login">
+                  Login
                </NavLink>
             </p>
 
@@ -279,4 +242,4 @@ const Login = () => {
    );
 };
 
-export default Login;
+export default SignUp;

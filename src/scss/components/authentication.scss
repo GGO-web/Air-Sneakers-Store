@@ -1,0 +1,66 @@
+.authentication {
+   margin: auto;
+   width: 100%;
+   max-width: $mobileSmall;
+
+   &__title {
+      font-weight: 700;
+      font-size: rem(28);
+   }
+
+   &__form-input {
+      border-radius: 0;
+      font-size: rem(16);
+
+      &::placeholder {
+         color: var(--color-gray);
+      }
+   }
+
+   &__form-label {
+      font-weight: 500;
+   }
+
+   &__form-icon {
+      &--append {
+         position: absolute;
+         right: 0;
+         z-index: 5;
+         border: none;
+
+         button {
+            transition: filter 0.3s;
+
+            &:hover {
+               filter: drop-shadow(0 0 3px var(--bs-gray-400));
+            }
+         }
+      }
+   }
+
+   &__form-input--password {
+      padding-right: 44px;
+      background-image: none;
+   }
+
+   &-form__input-group .input-group-text {
+      background-color: transparent;
+
+      .authentication__form-icon {
+         padding: 1px;
+         width: 20px;
+         object-fit: cover;
+      }
+
+      &:not(.authentication__form-icon--append) {
+         position: relative;
+         border-radius: var(--border-radius) 0 0 var(--border-radius);
+      }
+   }
+
+   &__form-privacy {
+      .link-dark:hover {
+         text-decoration: underline;
+      }
+   }
+}

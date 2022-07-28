@@ -3,24 +3,32 @@
    top: 0;
    z-index: 5;
    width: 100%;
+   color: var(--color-white);
+   background-color: var(--bs-gray-dark);
 
    &__inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      @include adaptiveValue("padding-top", 32, 10);
-      @include adaptiveValue("padding-bottom", 32, 10);
+      padding-top: 10px;
+      padding-bottom: 10px;
    }
 
    &__logo {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       margin-right: rem(20);
-      border-radius: 100%;
-      padding: rem(5);
-      width: rem(50);
-      height: rem(50);
+      font-family: "Comfortaa", cursive;
       font-weight: 700;
-      background-color: var(--bs-info);
+      gap: rem(10);
+
+      img {
+         display: inline-block;
+         border-radius: 100%;
+         padding: rem(5);
+         width: rem(50);
+         height: rem(50);
+         font-weight: 700;
+      }
    }
 }
