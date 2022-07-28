@@ -1,15 +1,31 @@
 .navbar {
+   &__links {
+      gap: rem(20);
+   }
+
    &__link {
+      padding: rem(10) rem(20);
+      color: var(--color-white);
       transition: background-color 0.3s, color 0.3s;
+
+      &.active {
+         color: var(--color-black);
+         background-color: var(--color-white);
+      }
 
       &:hover {
          color: var(--color-white);
-         background-color: var(--color-primary);
+         background-color: var(--bs-blue);
       }
+   }
 
-      &.active {
-         color: var(--color-white);
-         background-color: var(--bs-primary);
+   &__controls {
+      display: flex;
+      align-items: center;
+      gap: rem(15);
+
+      &-user {
+         text-transform: capitalize;
       }
    }
 }

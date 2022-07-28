@@ -9,9 +9,25 @@
          "dollar-variables",
          "declarations",
          {
+            "type": "rule",
+            "selector": "&\\[[^\\[\\]]+\\]"
+         },
+         {
+            "type": "rule",
+            "selector": "&\\..+"
+         },
+         {
+            "type": "rule",
+            "selector": "&--.+"
+         },
+         {
+            "type": "rule",
+            "selector": ".* &"
+         },
+         {
             "type": "at-rule",
             "name": "include",
-            "hasBlock": false
+            "hasBlock": true
          },
          {
             "type": "rule",
@@ -61,27 +77,6 @@
          {
             "type": "rule",
             "selector": "&:nth-child.+"
-         },
-         {
-            "type": "rule",
-            "selector": "&\\[[^\\[\\]]+\\]"
-         },
-         {
-            "type": "rule",
-            "selector": "&\\..+"
-         },
-         {
-            "type": "rule",
-            "selector": "&--.+"
-         },
-         {
-            "type": "rule",
-            "selector": ".* &"
-         },
-         {
-            "type": "at-rule",
-            "name": "include",
-            "hasBlock": true
          },
          "at-rules"
       ],
