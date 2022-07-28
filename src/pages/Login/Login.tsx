@@ -1,3 +1,4 @@
+import { FirebaseError } from "firebase/app";
 import {
    browserSessionPersistence,
    FacebookAuthProvider,
@@ -8,8 +9,8 @@ import {
    signInWithPopup,
    User,
 } from "firebase/auth";
-import { FormEvent, useEffect, useRef, useState } from "react";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { Button, Col, Form, InputGroup, Modal, Row } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSigninCheck } from "reactfire";
 
@@ -20,10 +21,15 @@ import { signIn } from "../../redux/user/userSlice";
 
 import { isValidEmail } from "../../utilities/emailValidator";
 import { isValidPassword } from "../../utilities/passwordValidator";
+import { isValidUserName } from "../../utilities/userNameValidator";
 
 const Login = () => {
-   const [errors, setErrors] = useState({ email: true, password: true });
-   const [validated, setValidated] = useState(false);
+   const [touched, setTouched] = useState(false);
+   const [inputControls, setInputControls] = useState({
+      userName: "",
+      email: "",
+      password: "",
+   });
 
    const dispatch = useAppDispatch();
    const { data: signInCheckResult } = useSigninCheck();
@@ -33,44 +39,55 @@ const Login = () => {
 
    const formCheckboxRef = useRef<HTMLInputElement>(null);
 
-   const formChangeEvent = (event: FormEvent<HTMLFormElement>) => {
-      const form: HTMLFormElement = event.currentTarget;
+   const [formSubmitError, setFormSubmitError] = useState("");
 
-      setErrors({
-         email: isValidEmail(form["email"].value),
-         password: isValidPassword(form["password"].value),
-      });
-
-      setValidated(
-         isValidEmail(form["email"].value) &&
-            isValidPassword(form["password"].value)
+   const formCheckIsValid = () => {
+      return (
+         isValidUserName(inputControls.userName) &&
+         isValidEmail(inputControls.email) &&
+         isValidPassword(inputControls.password)
       );
    };
 
-   const formSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
+   const inputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+      setTouched(true);
+
+      setInputControls({
+         ...inputControls,
+         [event.target.name]: event.target.value,
+      });
+   };
+
+   const formSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
       const form: HTMLFormElement = event.currentTarget;
 
-      event.preventDefault();
-      event.stopPropagation();
+      try {
+         await signInWithEmailAndPassword(
+            firebaseAuth,
+            inputControls.email,
+            inputControls.password
+         );
 
-      setValidated(false);
+         if (formCheckboxRef.current?.checked) {
+            await setPersistence(firebaseAuth, browserSessionPersistence);
+         } else {
+            await setPersistence(firebaseAuth, inMemoryPersistence);
+         }
+      } catch (error: any) {
+         const fireError = error as FirebaseError;
 
-      signInWithEmailAndPassword(
-         firebaseAuth,
-         form["email"].value,
-         form["password"].value
-      )
-         .then(async () => {
-            if (formCheckboxRef.current?.checked) {
-               await setPersistence(firebaseAuth, browserSessionPersistence);
-            } else {
-               await setPersistence(firebaseAuth, inMemoryPersistence);
-            }
-         })
-         .catch(() => {
-            form.reset();
-            setErrors({ email: true, password: true });
-         });
+         if (fireError.message.includes("wrong-password")) {
+            setFormSubmitError("The entered password is wrong.");
+         } else if (fireError.message.includes("user-not-found")) {
+            setFormSubmitError("The user with the given email is not found.");
+         } else {
+            setFormSubmitError(fireError.message);
+         }
+
+         form.reset();
+      }
    };
 
    const loginWith = (
@@ -103,8 +120,7 @@ const Login = () => {
 
             <Form
                noValidate
-               validated={validated}
-               onChange={(e) => formChangeEvent(e)}
+               validated={formCheckIsValid()}
                onSubmit={(e) => formSubmitHandler(e)}
                className="authentication__form authentication-form"
             >
@@ -126,8 +142,12 @@ const Login = () => {
                         name="email"
                         className="authentication__form-input"
                         type="email"
+                        value={inputControls.email}
+                        onChange={inputChangeHandler}
                         placeholder="Your email"
-                        isInvalid={!errors.email}
+                        isInvalid={
+                           !isValidEmail(inputControls.email) && touched
+                        }
                      />
                      <Form.Control.Feedback type="invalid">
                         Please, input valid email
@@ -153,8 +173,12 @@ const Login = () => {
                         name="password"
                         className="authentication__form-input authentication__form-input--password"
                         type={showPassword ? "text" : "password"}
+                        value={inputControls.password}
+                        onChange={inputChangeHandler}
                         placeholder="Your password"
-                        isInvalid={!errors.password}
+                        isInvalid={
+                           !isValidPassword(inputControls.password) && touched
+                        }
                      />
 
                      <InputGroup.Text className="authentication__form-icon authentication__form-icon--append">
@@ -189,7 +213,7 @@ const Login = () => {
                <Button
                   type="submit"
                   className="mt-3 authentication__form-button button-style btn-reset w-100"
-                  disabled={!validated}
+                  disabled={formCheckIsValid()}
                >
                   Login
                </Button>
@@ -237,6 +261,19 @@ const Login = () => {
                   Sign up
                </NavLink>
             </p>
+
+            <Modal
+               show={formSubmitError ? true : false}
+               onHide={() => setFormSubmitError("")}
+               centered
+            >
+               <Modal.Header closeButton>
+                  <Modal.Title>
+                     You got an error while submitting the form
+                  </Modal.Title>
+               </Modal.Header>
+               <Modal.Body>{formSubmitError}</Modal.Body>
+            </Modal>
          </div>
       </section>
    );

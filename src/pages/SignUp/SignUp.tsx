@@ -1,8 +1,6 @@
-import { FormEvent, useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { Button, Form, InputGroup, Modal } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
-
-import { useAppDispatch } from "../../hooks/reduxHooks";
 
 import { firebaseAuth } from "../../firebaseConfig";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -10,62 +8,69 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { isValidEmail } from "../../utilities/emailValidator";
 import { isValidPassword } from "../../utilities/passwordValidator";
 import { isValidUserName } from "../../utilities/userNameValidator";
+import { FirebaseError } from "firebase/app";
 
 const SignUp = () => {
-   const [errors, setErrors] = useState({
-      userName: true,
-      email: true,
-      password: true,
+   const [touched, setTouched] = useState(false);
+   const [inputControls, setInputControls] = useState({
+      userName: "",
+      email: "",
+      password: "",
    });
-   const [validated, setValidated] = useState(false);
 
-   const dispatch = useAppDispatch();
    const navigate = useNavigate();
 
    const [showPassword, setShowPassword] = useState(false);
 
-   const formChangeEvent = (event: FormEvent<HTMLFormElement>) => {
-      const form: HTMLFormElement = event.currentTarget;
+   const [formSubmitError, setFormSubmitError] = useState("");
 
-      setErrors({
-         userName: isValidUserName(form["userName"].value),
-         email: isValidEmail(form["email"].value),
-         password: isValidPassword(form["password"].value),
-      });
-
-      setValidated(
-         isValidEmail(form["email"].value) &&
-            isValidUserName(form["userName"].value) &&
-            isValidPassword(form["password"].value)
+   const formCheckIsValid = () => {
+      return (
+         isValidUserName(inputControls.userName) &&
+         isValidEmail(inputControls.email) &&
+         isValidPassword(inputControls.password)
       );
    };
 
-   const formSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
+   const inputChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+      setTouched(true);
+
+      setInputControls({
+         ...inputControls,
+         [event.target.name]: event.target.value,
+      });
+   };
+
+   const formSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
       const form: HTMLFormElement = event.currentTarget;
 
-      event.preventDefault();
-      event.stopPropagation();
+      try {
+         const result = await createUserWithEmailAndPassword(
+            firebaseAuth,
+            inputControls.email,
+            inputControls.password
+         );
 
-      createUserWithEmailAndPassword(
-         firebaseAuth,
-         form["email"].value,
-         form["password"].value
-      )
-         .then((result) => {
-            updateProfile(result.user, {
-               displayName: (form["userName"] as unknown as HTMLInputElement)
-                  .value,
-            }).then(() => {
-               navigate("/login");
-            });
-         })
-         .catch(() => {
-            setValidated(false);
-
-            form.reset();
-
-            setErrors({ userName: true, email: true, password: true });
+         await updateProfile(result.user, {
+            displayName: inputControls.userName,
          });
+
+         navigate("/login");
+      } catch (error: any) {
+         const fireError = error as FirebaseError;
+
+         if (fireError.message.includes("email-already-in-use")) {
+            setFormSubmitError("Email is already in use, try another one.");
+         } else if (fireError.message.includes("weak-password")) {
+            setFormSubmitError("The password is too weak.");
+         } else {
+            setFormSubmitError(fireError.message);
+         }
+
+         form.reset();
+      }
    };
 
    const togglePassword = () => {
@@ -87,8 +92,7 @@ const SignUp = () => {
 
             <Form
                noValidate
-               validated={validated}
-               onChange={(e) => formChangeEvent(e)}
+               validated={formCheckIsValid()}
                onSubmit={(e) => formSubmitHandler(e)}
                className="authentication__form authentication-form mb-5"
             >
@@ -102,8 +106,12 @@ const SignUp = () => {
                         name="userName"
                         className="authentication__form-input"
                         type="text"
+                        value={inputControls.userName}
+                        onChange={inputChangeHandler}
                         placeholder="Your name"
-                        isInvalid={!errors.userName}
+                        isInvalid={
+                           !isValidUserName(inputControls.userName) && touched
+                        }
                      />
                      <Form.Control.Feedback type="invalid">
                         Name length should be at least 3
@@ -129,8 +137,12 @@ const SignUp = () => {
                         name="email"
                         className="authentication__form-input"
                         type="email"
+                        value={inputControls.email}
+                        onChange={inputChangeHandler}
                         placeholder="Your email"
-                        isInvalid={!errors.email}
+                        isInvalid={
+                           !isValidEmail(inputControls.email) && touched
+                        }
                      />
                      <Form.Control.Feedback type="invalid">
                         Please, input valid email
@@ -156,8 +168,12 @@ const SignUp = () => {
                         name="password"
                         className="authentication__form-input authentication__form-input--password"
                         type={showPassword ? "text" : "password"}
+                        value={inputControls.password}
+                        onChange={inputChangeHandler}
                         placeholder="Your password"
-                        isInvalid={!errors.password}
+                        isInvalid={
+                           !isValidPassword(inputControls.password) && touched
+                        }
                      />
 
                      <InputGroup.Text className="authentication__form-icon authentication__form-icon--append">
@@ -196,7 +212,7 @@ const SignUp = () => {
                <Button
                   type="submit"
                   className="mt-3 authentication__form-button button-style btn-reset w-100"
-                  disabled={!validated}
+                  disabled={!formCheckIsValid()}
                >
                   Continue
                </Button>
@@ -208,6 +224,19 @@ const SignUp = () => {
                   Login
                </NavLink>
             </p>
+
+            <Modal
+               show={formSubmitError ? true : false}
+               onHide={() => setFormSubmitError("")}
+               centered
+            >
+               <Modal.Header closeButton>
+                  <Modal.Title>
+                     You got an error while submitting the form
+                  </Modal.Title>
+               </Modal.Header>
+               <Modal.Body>{formSubmitError}</Modal.Body>
+            </Modal>
          </div>
       </section>
    );
