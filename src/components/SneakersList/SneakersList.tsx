@@ -1,4 +1,5 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
@@ -12,6 +13,8 @@ import {
 import Sneaker from "./Sneaker/Sneaker";
 
 const SneakersList: FC = () => {
+   const [limit, setLimit] = useState(6);
+
    const dispatch = useAppDispatch();
    const sneakers: ISneaker[] = useAppSelector(getSneakersItemsSelector);
 
@@ -31,16 +34,27 @@ const SneakersList: FC = () => {
    });
 
    return (
-      <ul className="sneakers-list list-reset">
-         {sneakers.map((sneaker: ISneaker) => {
-            return (
-               <Sneaker
-                  key={sneaker.productId}
-                  sneaker={{ ...sneaker }}
-               ></Sneaker>
-            );
-         })}
-      </ul>
+      <>
+         <ul className="sneakers-list list-reset mb-5">
+            {sneakers.slice(0, limit).map((sneaker: ISneaker) => {
+               return (
+                  <Sneaker
+                     key={sneaker.productId}
+                     sneaker={{ ...sneaker }}
+                  ></Sneaker>
+               );
+            })}
+         </ul>
+
+         <Button
+            onClick={() => setLimit(limit + 5)}
+            variant="outline-success"
+            className="w-100 load-more pt-2 pb-2"
+            style={limit >= sneakers.length ? { display: "none" } : undefined}
+         >
+            Load more
+         </Button>
+      </>
    );
 };
 
