@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import { ISneaker } from "../../redux/sneakers/sneakers.model";
 import {
@@ -14,9 +15,20 @@ const SneakersList: FC = () => {
    const dispatch = useAppDispatch();
    const sneakers: ISneaker[] = useAppSelector(getSneakersItemsSelector);
 
+   const [sneakersStorage, setSneakersStorage] = useLocalStorage(
+      "sneakers",
+      sneakers
+   );
+
    useEffect(() => {
-      dispatch(fetchSneakers());
-   }, [dispatch]);
+      if (sneakers.length === 0) {
+         dispatch(fetchSneakers());
+      }
+
+      if (!sneakersStorage && sneakers.length) {
+         setSneakersStorage(sneakers);
+      }
+   });
 
    return (
       <ul className="sneakers-list list-reset">

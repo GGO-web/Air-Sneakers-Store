@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-import { ISneakers } from './sneakers.model';
+import { ISneaker, ISneakers } from './sneakers.model';
 
 const initialState: ISneakers = { items: [], loading: false, error: '' };
 
@@ -15,7 +15,11 @@ export const fetchSneakers = createAsyncThunk(
 const sneakersSlice = createSlice({
    name: 'sneakers',
    initialState,
-   reducers: {},
+   reducers: {
+      setSneakers(state, action: PayloadAction<ISneaker[]>) {
+         state.items = action.payload;
+      },
+   },
    extraReducers: (builder) => {
       builder.addCase(fetchSneakers.pending, (state, action) => {
          state.loading = true;
@@ -40,4 +44,5 @@ export const getSneakersLoadingStatus = (store: { sneakers: ISneakers }) =>
 export const getSneakersErrors = (store: { sneakers: ISneakers }) =>
    store.sneakers.error;
 
+export const { setSneakers } = sneakersSlice.actions;
 export default sneakersSlice.reducer;
