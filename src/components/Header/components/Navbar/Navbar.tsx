@@ -1,11 +1,18 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import { Navbar as NavbarCustom, Nav } from "react-bootstrap";
 
 import { NavLink } from "react-router-dom";
+
 import { firebaseAuth } from "../../../../firebaseConfig";
+
 import { useAppDispatch, useAppSelector } from "../../../../hooks/reduxHooks";
-import { getUserSelector, signOut } from "../../../../redux/user/userSlice";
+import { IUser } from "../../../../redux/user/user.model";
+import {
+   getUserSelector,
+   signIn,
+   signOut,
+} from "../../../../redux/user/userSlice";
 
 const Navbar: FC = () => {
    const user = useAppSelector(getUserSelector);
@@ -16,6 +23,18 @@ const Navbar: FC = () => {
 
       dispatch(signOut());
    };
+
+   // get current userInfo using signIn method
+   useEffect(() => {
+      if (!user.name) {
+         const currentUser: IUser = {
+            name: firebaseAuth.currentUser?.displayName as string,
+            email: firebaseAuth.currentUser?.email as string,
+         };
+
+         dispatch(signIn(currentUser));
+      }
+   }, []);
 
    return (
       <NavbarCustom className="navbar p-0">
