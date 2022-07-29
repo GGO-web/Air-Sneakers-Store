@@ -1,0 +1,37 @@
+.home {
+   position: relative;
+   flex: 1 1 auto;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   color: var(--color-white);
+
+   &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("../../../public/images/home.webp");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: bottom center;
+      filter: brightness(0.95);
+   }
+
+   &__title {
+      margin-bottom: rem(40);
+      text-shadow: 0 0 10px var(--color-primary);
+
+      @include adaptiveValue("max-width", 500, 320);
+      @include adaptiveValue("font-size", 40, 24);
+   }
+
+   &__button {
+      padding: 15px 40px;
+      border-radius: var(--border-radius) 0;
+   }
+}

@@ -6,7 +6,7 @@ const Header: FC = () => {
       <header className="header">
          <div className="header__inner container">
             <a className="header__logo" href="#!">
-               <img className="header__logo-img" src="logo.svg" alt="" />
+               <img className="header__logo-img" src="/logo.svg" alt="" />
                Air Sneakers
             </a>
 
