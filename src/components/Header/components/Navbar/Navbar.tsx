@@ -33,7 +33,7 @@ const Navbar: FC = () => {
                <img
                   className="d-inline-block me-2"
                   style={{ verticalAlign: "bottom" }}
-                  src="images/profile.svg"
+                  src="/images/profile.svg"
                   alt=""
                />
                {user.name || "User"}
@@ -45,7 +45,7 @@ const Navbar: FC = () => {
                <img
                   className="w-20 h-20"
                   aria-hidden="true"
-                  src="images/logout.svg"
+                  src="/images/logout.svg"
                   alt=""
                />
                Logout
