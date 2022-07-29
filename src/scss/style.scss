@@ -15,6 +15,9 @@
 // common styles
 @import "common";
 
+// pages
+@import "components/home";
+
 // individual layout blocks
 @import "components/header";
 @import "components/authentication";
