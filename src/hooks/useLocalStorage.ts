@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
 export const useLocalStorage = <T>(key: string, initialValue?: T) => {
-   const [storedValue, setStoredValue] = useState<T>();
+   const [storedValue, setStoredValue] = useState<T>(
+      initialValue || JSON.parse(localStorage.getItem(key) as string)
+   );
 
    useEffect(() => {
       if (storedValue) {

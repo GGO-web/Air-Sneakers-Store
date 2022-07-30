@@ -18,10 +18,7 @@ const SneakersList: FC = () => {
    const dispatch = useAppDispatch();
    const sneakers: ISneaker[] = useAppSelector(getSneakersItemsSelector);
 
-   const [sneakersStorage, setSneakersStorage] = useLocalStorage(
-      "sneakers",
-      sneakers
-   );
+   const [sneakersStorage, setSneakersStorage] = useLocalStorage("sneakers");
 
    const updateSneakersLimit = (): void => {
       setLimit(limit + 5);

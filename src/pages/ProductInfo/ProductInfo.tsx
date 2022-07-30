@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
+import { Button, Card } from "react-bootstrap";
 
 import { useAppSelector } from "../../hooks/reduxHooks";
 import {
@@ -7,12 +9,11 @@ import {
    setSneakers,
 } from "../../redux/sneakers/sneakersSlice";
 import { ISneaker } from "../../redux/sneakers/sneakers.model";
-
-import Header from "../../components/Header/Header";
-import { Button, Card } from "react-bootstrap";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { useDispatch } from "react-redux";
+import { addCartItem } from "../../redux/cart/cartSlice";
+
+import Header from "../../components/Header/Header";
 
 const ProductInfo = () => {
    const sneakers = useAppSelector(getSneakersItemsSelector);
@@ -22,24 +23,27 @@ const ProductInfo = () => {
 
    const dispatch = useDispatch();
 
-   const [sneakersStore] = useLocalStorage("sneakers", null);
+   const [sneakersStore] = useLocalStorage("sneakers");
 
    const getProductById = useCallback(() => {
       const id = params.id?.slice(1);
 
-      if (!product && sneakersStore)
+      if (!product && sneakersStore) {
          setProduct(
             sneakers.find(
                (sneaker: ISneaker) => sneaker.productId === id
             ) as ISneaker
          );
+      }
    }, [params.id, product, sneakers, sneakersStore]);
 
    useEffect(() => {
       if (sneakers.length === 0 && sneakersStore) {
          dispatch(setSneakers(sneakersStore as unknown as ISneaker[]));
       }
+   }, []);
 
+   useEffect(() => {
       if (sneakers) getProductById();
    }, [dispatch, sneakers, sneakersStore, getProductById]);
 
@@ -51,7 +55,7 @@ const ProductInfo = () => {
                <div className="product-info__inner container">
                   <Card className="product-info__card">
                      <Card.Img
-                        className="w-100"
+                        className="w-100 product-info__card-img"
                         src={product?.productAsset.preview || "#!"}
                      ></Card.Img>
 
@@ -83,6 +87,7 @@ const ProductInfo = () => {
                         ></Card.Text>
 
                         <Button
+                           onClick={() => dispatch(addCartItem(product))}
                            className="w-100 text-white pt-2 pb-2 px-3"
                            variant="primary"
                            size="sm"
