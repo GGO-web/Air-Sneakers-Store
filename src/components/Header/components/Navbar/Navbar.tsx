@@ -7,7 +7,10 @@ import { NavLink } from "react-router-dom";
 import { firebaseAuth } from "../../../../firebaseConfig";
 
 import { useAppDispatch, useAppSelector } from "../../../../hooks/reduxHooks";
-import { getCartTotalItemsSelector } from "../../../../redux/cart/cartSlice";
+import {
+   getCartTotalItemsSelector,
+   setCartItems,
+} from "../../../../redux/cart/cartSlice";
 import { IUser } from "../../../../redux/user/user.model";
 import {
    getUserSelector,
@@ -29,6 +32,8 @@ const Navbar: FC = () => {
       await firebaseAuth.signOut();
 
       dispatch(signOut());
+
+      dispatch(setCartItems([]));
    };
 
    // get current userInfo using signIn method

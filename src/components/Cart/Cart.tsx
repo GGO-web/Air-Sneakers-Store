@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Offcanvas, Stack } from "react-bootstrap";
+import { useSigninCheck } from "reactfire";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
@@ -27,7 +28,11 @@ const Cart = ({
 
    const dispatch = useAppDispatch();
 
-   const [cartStore, setCartStore] = useLocalStorage<ICartItem[]>("cart");
+   const { status, data: signInCheckResult } = useSigninCheck();
+
+   const [cartStore, setCartStore] = useLocalStorage<ICartItem[]>(
+      `cart-${signInCheckResult.user?.email}`
+   );
 
    useEffect(() => {
       if (cartItems.length === 0 && cartStore) {
