@@ -1,18 +1,25 @@
 .product-info {
-   &__card {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
-      font-family: Comfortaa, cursive;
-      gap: rem(20);
-
-      @include adaptiveValue("padding", 20, 10);
-      @include adaptiveValue("--card-width", 400, 260);
-   }
-
    &__title,
    &__price {
       font-weight: 700;
+
       @include adaptiveValue("font-size", 28, 18);
+   }
+
+   &__card {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
+      font-family: "Comfortaa", cursive;
+      gap: rem(20);
+
+      &-img {
+         object-fit: contain;
+
+         @include adaptiveValue("max-height", 350, 200);
+      }
+
+      @include adaptiveValue("padding", 20, 10);
+      @include adaptiveValue("--card-width", 400, 260);
    }
 
    &__description {

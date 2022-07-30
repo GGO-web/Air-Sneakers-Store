@@ -27,22 +27,17 @@ const Cart = ({
 
    const dispatch = useAppDispatch();
 
-   const [cartStore, setCartStore] = useLocalStorage<ICartItem[]>(
-      "cart",
-      cartItems
-   );
+   const [cartStore, setCartStore] = useLocalStorage<ICartItem[]>("cart");
 
    useEffect(() => {
-      console.log(cartStore, cartItems);
-
-      if (cartStore?.length && cartItems.length === 0) {
-         dispatch(setCartItems(cartStore || []));
+      if (cartItems.length === 0 && cartStore) {
+         dispatch(setCartItems(cartStore));
       }
+   }, []);
 
-      if (cartItems.length) {
-         setCartStore(cartItems);
-      }
-   });
+   useEffect(() => {
+      setCartStore(cartItems);
+   }, [cartItems]);
 
    return (
       <Offcanvas
