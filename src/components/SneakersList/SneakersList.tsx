@@ -23,17 +23,6 @@ const SneakersList: FC = () => {
       sneakers
    );
 
-   const updateSneakersLimit = (): void => {
-      setLimit(limit + 5);
-
-      setTimeout(() => {
-         window.scrollTo({
-            behavior: "smooth",
-            top: document.body.scrollHeight,
-         });
-      }, 300);
-   };
-
    useEffect(() => {
       if (sneakers.length === 0) {
          dispatch(fetchSneakers());
@@ -46,7 +35,7 @@ const SneakersList: FC = () => {
 
    return (
       <>
-         <ul className="sneakers-list list-reset">
+         <ul className="sneakers-list list-reset mb-5">
             {sneakers.slice(0, limit).map((sneaker: ISneaker) => {
                return (
                   <Sneaker
@@ -58,9 +47,9 @@ const SneakersList: FC = () => {
          </ul>
 
          <Button
-            onClick={() => updateSneakersLimit()}
+            onClick={() => setLimit(limit + 5)}
             variant="outline-success"
-            className="mt-5 w-100 load-more pt-2 pb-2"
+            className="w-100 load-more pt-2 pb-2"
             style={limit >= sneakers.length ? { display: "none" } : undefined}
          >
             Load more

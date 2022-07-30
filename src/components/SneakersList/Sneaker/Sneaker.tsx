@@ -1,20 +1,11 @@
 import { Button, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-import { useAppDispatch } from "../../../hooks/reduxHooks";
-import { addCartItem } from "../../../redux/cart/cartSlice";
 import { ISneaker } from "../../../redux/sneakers/sneakers.model";
 
 import { formatCurrency } from "../../../utilities/formatCurrency";
-import { priceWithTaxToDollars } from "../../../utilities/priceWithTaxToDollars";
 
 const Sneaker = ({ sneaker }: { sneaker: ISneaker }) => {
-   const dispatch = useAppDispatch();
-
-   function addToCart(event: any) {
-      dispatch(addCartItem(sneaker));
-   }
-
    return (
       <li className="sneakers-list__item">
          <Card className="h-100">
@@ -29,9 +20,7 @@ const Sneaker = ({ sneaker }: { sneaker: ISneaker }) => {
             <Card.Body className="d-flex flex-column">
                <Card.Title className="mb-4">
                   <span className="d-block mb-2 fs-4">
-                     {formatCurrency(
-                        priceWithTaxToDollars(sneaker.priceWithTax.min)
-                     )}
+                     {formatCurrency(sneaker.priceWithTax.min * 0.01)}
                   </span>
 
                   <Card.Link
@@ -57,7 +46,6 @@ const Sneaker = ({ sneaker }: { sneaker: ISneaker }) => {
                      </NavLink>
 
                      <Button
-                        onClick={(e) => addToCart(e)}
                         className="w-100 text-white pt-2 pb-2 px-3"
                         variant="primary"
                         size="sm"
