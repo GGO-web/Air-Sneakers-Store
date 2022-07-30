@@ -66,6 +66,13 @@ const cartSlice = createSlice({
             return item.sneaker.productId !== action.payload.id;
          });
       },
+      setCartItems: (state, action: PayloadAction<ICartItem[]>) => {
+         state.cartItems = action.payload;
+         state.totalItems = action.payload.reduce(
+            (prev, current) => prev + current.count,
+            0
+         );
+      },
    },
 });
 
@@ -78,7 +85,7 @@ export const getCartTotalPriceSelector = (store: { cart: ICart }) =>
       return prev + sneaker.count * sneaker.price;
    }, 0);
 
-export const { addCartItem, updateCartItem, removeCartItem } =
+export const { addCartItem, updateCartItem, removeCartItem, setCartItems } =
    cartSlice.actions;
 
 export default cartSlice.reducer;

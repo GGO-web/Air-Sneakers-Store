@@ -1,8 +1,8 @@
 import { Button, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+
 import { useAppDispatch } from "../../../hooks/reduxHooks";
 import { addCartItem } from "../../../redux/cart/cartSlice";
-
 import { ISneaker } from "../../../redux/sneakers/sneakers.model";
 
 import { formatCurrency } from "../../../utilities/formatCurrency";

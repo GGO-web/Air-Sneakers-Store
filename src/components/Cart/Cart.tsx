@@ -1,10 +1,14 @@
+import { useEffect } from "react";
 import { Offcanvas, Stack } from "react-bootstrap";
 
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { ICartItem } from "../../redux/cart/cart.model";
 import {
    getCartItemsSelector,
    getCartTotalItemsSelector,
    getCartTotalPriceSelector,
+   setCartItems,
 } from "../../redux/cart/cartSlice";
 import { formatCurrency } from "../../utilities/formatCurrency";
 
@@ -20,6 +24,25 @@ const Cart = ({
    const cartItems = useAppSelector(getCartItemsSelector);
    const totalPrice = useAppSelector(getCartTotalPriceSelector);
    const cartTotalItems = useAppSelector(getCartTotalItemsSelector);
+
+   const dispatch = useAppDispatch();
+
+   const [cartStore, setCartStore] = useLocalStorage<ICartItem[]>(
+      "cart",
+      cartItems
+   );
+
+   useEffect(() => {
+      console.log(cartStore, cartItems);
+
+      if (cartStore?.length && cartItems.length === 0) {
+         dispatch(setCartItems(cartStore || []));
+      }
+
+      if (cartItems.length) {
+         setCartStore(cartItems);
+      }
+   });
 
    return (
       <Offcanvas
