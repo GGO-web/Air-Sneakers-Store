@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { Offcanvas, Stack } from "react-bootstrap";
 import { useSigninCheck } from "reactfire";
@@ -28,7 +29,7 @@ const Cart = ({
 
    const dispatch = useAppDispatch();
 
-   const { status, data: signInCheckResult } = useSigninCheck();
+   const { data: signInCheckResult } = useSigninCheck();
 
    const [cartStore, setCartStore] = useLocalStorage<ICartItem[]>(
       `cart-${signInCheckResult.user?.email}`
