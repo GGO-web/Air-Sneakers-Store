@@ -1,16 +1,30 @@
 .navbar {
+   flex-direction: row-reverse;
+   gap: rem(20);
+
+   &__toggle {
+      border-color: none;
+      padding: 0;
+      color: var(--color-white);
+
+      svg {
+         padding: rem(5);
+         width: rem(36);
+         height: rem(36);
+      }
+   }
+
    &__links {
       gap: rem(20);
    }
 
    &__link {
       padding: rem(10) rem(20);
-      color: var(--color-white);
       transition: background-color 0.3s, color 0.3s;
 
       &.active {
-         color: var(--color-black);
-         background-color: var(--color-white);
+         color: var(--color-white);
+         background-color: var(--color-primary);
       }
 
       &:hover {
@@ -22,10 +36,47 @@
    &__controls {
       display: flex;
       align-items: center;
+      margin-left: auto;
       gap: rem(15);
 
       &-user {
          text-transform: capitalize;
+      }
+   }
+
+   &__button-icon {
+      flex: 0 0 rem(20);
+      width: rem(20);
+      height: rem(20);
+   }
+
+   &__body {
+      display: flex;
+      flex-direction: column;
+      gap: rem(40);
+   }
+
+   @media (min-width: 992px) {
+      flex-direction: row;
+
+      &__body {
+         flex-direction: row;
+      }
+
+      &__links {
+         margin-right: rem(30);
+      }
+
+      &__link {
+         &.active {
+            color: var(--color-black);
+            background-color: var(--color-white);
+         }
+
+         &:hover {
+            color: var(--color-white);
+            background-color: var(--bs-blue);
+         }
       }
    }
 }

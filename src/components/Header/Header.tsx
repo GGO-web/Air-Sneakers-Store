@@ -8,7 +8,7 @@ const Header: FC = () => {
          <div className="header__inner container">
             <a className="header__logo" href="#!">
                <img className="header__logo-img" src="/logo.svg" alt="" />
-               Air Sneakers
+               <span>Air Sneakers</span>
             </a>
 
             <Navbar></Navbar>

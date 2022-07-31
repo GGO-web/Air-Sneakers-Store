@@ -501,6 +501,7 @@
       "color-hex-case": "lower",
       "color-hex-length": "short",
       "color-named": "never",
+      "color-function-notation": "comma",
       "color-no-hex": null,
       "color-no-invalid-hex": true,
       "comment-empty-line-before": [
