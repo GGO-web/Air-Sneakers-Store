@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 import { ISneaker, ISneakers } from './sneakers.model';
 
@@ -8,7 +7,13 @@ const initialState: ISneakers = { items: [], loading: false, error: '' };
 export const fetchSneakers = createAsyncThunk(
    'sneakers/fetchSneakers',
    async () => {
-      return axios.get(process.env.REACT_APP_BACKEND_URL as string);
+      return fetch(process.env.REACT_APP_BACKEND_URL as string)
+         .then((res) => {
+            return res.json();
+         })
+         .then((data) => {
+            return data;
+         });
    }
 );
 
@@ -32,7 +37,7 @@ const sneakersSlice = createSlice({
 
       builder.addCase(fetchSneakers.fulfilled, (state, action: any) => {
          state.loading = false;
-         state.items = action.payload.data.items;
+         state.items = action.payload.items;
       });
    },
 });
