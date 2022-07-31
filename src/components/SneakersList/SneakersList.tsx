@@ -1,13 +1,16 @@
+import { collection } from "firebase/firestore";
 import { FC, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { useFirestoreCollectionData } from "reactfire";
+import { firestore } from "../../firebaseConfig";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import { ISneaker } from "../../redux/sneakers/sneakers.model";
 import {
-   fetchSneakers,
    getSneakersItemsSelector,
+   setSneakers,
 } from "../../redux/sneakers/sneakersSlice";
 
 import Sneaker from "./Sneaker/Sneaker";
@@ -19,6 +22,9 @@ const SneakersList: FC = () => {
    const sneakers: ISneaker[] = useAppSelector(getSneakersItemsSelector);
 
    const [sneakersStorage, setSneakersStorage] = useLocalStorage("sneakers");
+
+   const sneakersCollection = collection(firestore, "sneakers");
+   const sneakersFirestore = useFirestoreCollectionData(sneakersCollection);
 
    const updateSneakersLimit = (): void => {
       setLimit(limit + 5);
@@ -32,8 +38,18 @@ const SneakersList: FC = () => {
    };
 
    useEffect(() => {
-      if (sneakers.length === 0) {
-         dispatch(fetchSneakers());
+      if (sneakers.length === 0 && sneakersStorage) {
+         dispatch(setSneakers(sneakersStorage as ISneaker[]));
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, []);
+
+   useEffect(() => {
+      if (sneakers.length === 0 && !sneakersStorage) {
+         const sneakersItems = JSON.parse(
+            JSON.parse(sneakersFirestore.data[0].sneakers)
+         );
+         dispatch(setSneakers(sneakersItems.items));
       }
 
       if (!sneakersStorage && sneakers.length) {
