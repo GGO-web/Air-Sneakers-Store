@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 
 import { AuthProvider, FirebaseAppProvider } from "reactfire";
 import { firebaseAuth, firebaseApp } from "./firebaseConfig";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
    document.getElementById("root") as HTMLElement
@@ -16,7 +17,9 @@ root.render(
    <FirebaseAppProvider firebaseApp={firebaseApp}>
       <AuthProvider sdk={firebaseAuth}>
          <Provider store={store}>
-            <App />
+            <BrowserRouter>
+               <App />
+            </BrowserRouter>
          </Provider>
       </AuthProvider>
    </FirebaseAppProvider>

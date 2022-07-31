@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { NavLink } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
 
@@ -6,10 +7,10 @@ const Header: FC = () => {
    return (
       <header className="header">
          <div className="header__inner container">
-            <a className="header__logo" href="#!">
+            <NavLink to="/" className="header__logo">
                <img className="header__logo-img" src="/logo.svg" alt="" />
                <span>Air Sneakers</span>
-            </a>
+            </NavLink>
 
             <Navbar></Navbar>
          </div>
