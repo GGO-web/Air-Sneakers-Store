@@ -8,8 +8,47 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import ProductInfo from "./pages/ProductInfo/ProductInfo";
 import Products from "./pages/Products/Products";
-import Error from "./pages/Error/Error";
 import SignUp from "./pages/SignUp/SignUp";
+import NotFound from "./pages/NotFound/NotFound";
+
+const routes: Array<{ path: string; element: JSX.Element }> = [
+   {
+      path: "/login",
+      element: <Login></Login>,
+   },
+   {
+      path: "/signup",
+      element: <SignUp></SignUp>,
+   },
+   {
+      path: "/",
+      element: (
+         <ProtectedRoute path="/login">
+            <Home></Home>
+         </ProtectedRoute>
+      ),
+   },
+   {
+      path: "/products",
+      element: (
+         <ProtectedRoute path="/login">
+            <Products></Products>
+         </ProtectedRoute>
+      ),
+   },
+   {
+      path: "/products/:id",
+      element: (
+         <ProtectedRoute path="/login">
+            <ProductInfo></ProductInfo>
+         </ProtectedRoute>
+      ),
+   },
+   {
+      path: "*",
+      element: <NotFound></NotFound>,
+   },
+];
 
 const App: FC = () => {
    const location = useLocation();
@@ -30,7 +69,6 @@ const App: FC = () => {
          displayLocation.pathname === "/login"
       ) {
          setDisplayLocation(location);
-         setTransistionStage("fadeOut");
       } else if (location !== displayLocation) {
          setTransistionStage("fadeOut");
       }
@@ -43,37 +81,13 @@ const App: FC = () => {
             onAnimationEnd={() => changeAnimation()}
          >
             <Routes location={displayLocation}>
-               <Route path="/login" element={<Login></Login>}></Route>
-               <Route path="/signup" element={<SignUp></SignUp>}></Route>
-
-               <Route
-                  path="/"
-                  element={
-                     <ProtectedRoute path="/login">
-                        <Home></Home>
-                     </ProtectedRoute>
-                  }
-               ></Route>
-
-               <Route
-                  path="/products"
-                  element={
-                     <ProtectedRoute path="/login">
-                        <Products></Products>
-                     </ProtectedRoute>
-                  }
-               ></Route>
-
-               <Route
-                  path="/products/:id"
-                  element={
-                     <ProtectedRoute path="/login">
-                        <ProductInfo></ProductInfo>
-                     </ProtectedRoute>
-                  }
-               ></Route>
-
-               <Route path="*" element={<Error></Error>}></Route>
+               {routes.map((route) => (
+                  <Route
+                     key={route.path}
+                     path={route.path}
+                     element={route.element}
+                  ></Route>
+               ))}
             </Routes>
          </div>
       </main>
