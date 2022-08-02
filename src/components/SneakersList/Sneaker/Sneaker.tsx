@@ -11,6 +11,8 @@ import { priceWithTaxToDollars } from "../../../utilities/priceWithTaxToDollars"
 const Sneaker = ({ sneaker }: { sneaker: ISneaker }) => {
    const dispatch = useAppDispatch();
 
+   const sneakerInfoURL: string = `/products/${sneaker.productId}`;
+
    function addToCart(event: any) {
       dispatch(addCartItem(sneaker));
    }
@@ -18,7 +20,7 @@ const Sneaker = ({ sneaker }: { sneaker: ISneaker }) => {
    return (
       <li className="sneakers-list__item">
          <Card className="h-100">
-            <Card.Link as={NavLink} to={`/products/:${sneaker.productId}`}>
+            <Card.Link as={NavLink} to={sneakerInfoURL}>
                <Card.Img
                   className="sneakers-list__item-img"
                   variant="top"
@@ -34,10 +36,7 @@ const Sneaker = ({ sneaker }: { sneaker: ISneaker }) => {
                      )}
                   </span>
 
-                  <Card.Link
-                     as={NavLink}
-                     to={`/products/:${sneaker.productId}`}
-                  >
+                  <Card.Link as={NavLink} to={sneakerInfoURL}>
                      <h2>{sneaker.productName}</h2>
                   </Card.Link>
                </Card.Title>
@@ -50,7 +49,7 @@ const Sneaker = ({ sneaker }: { sneaker: ISneaker }) => {
                <div className="mt-auto">
                   <div className="d-flex gap-3 align-items-center flex-column">
                      <NavLink
-                        to={`/products/:${sneaker.productId}`}
+                        to={sneakerInfoURL}
                         className="button-style text-center btn-reset w-100"
                      >
                         Read More

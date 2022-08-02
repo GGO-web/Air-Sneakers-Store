@@ -18,7 +18,7 @@ import Header from "../../components/Header/Header";
 
 const ProductInfo = () => {
    const sneakers = useAppSelector(getSneakersItemsSelector);
-   const params = useParams<{ id: string }>();
+   const { id } = useParams<{ id: string }>();
 
    const [product, setProduct] = useState<ISneaker>();
 
@@ -27,8 +27,6 @@ const ProductInfo = () => {
    const [sneakersStore] = useLocalStorage("sneakers");
 
    const getProductById = useCallback(() => {
-      const id = params.id?.slice(1);
-
       if (!product && sneakersStore) {
          setProduct(
             sneakers.find(
@@ -36,7 +34,7 @@ const ProductInfo = () => {
             ) as ISneaker
          );
       }
-   }, [params.id, product, sneakers, sneakersStore]);
+   }, [product, sneakers, sneakersStore]);
 
    useEffect(() => {
       if (sneakers.length === 0 && sneakersStore) {
